@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function () {
+    //change selectboxes to selectize mode to be searchable
+       $("select").select2();
+    });
+    </script>
+</head>
+    <body>
+        <div>
+            <form action="/" method="POST">
+                <select id="select_page" style="width:85%;" class="operator" name="item"> 
+                    <option value="">Search for CS:GO Item</option>
+                    {% for item in allItems %}
+                        <option value="{{item}}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+                <button style="margin-bottom: 5px" class="btn btn-primary" type="submit">Search</button>
+            </form>
+        </div>
+        <div>
+            {% if steamData|length %}
+            <div style="padding-top: 35px" align="center">
+                <table class="table">
+                    <tr>
+                        <th>Item</th>
+                        <th>Last Price</th>
+                        <th>Source</th>
+                    </tr>
+                    <tr>
+                        <td>{{ steamData.name }}</td>
+                        <td>{{ steamData.lastprice }}</td>
+                        <td>{{ steamData.source }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ spData.name }}</td>
+                        <td>{{ spData.lastprice }}</td>
+                        <td>{{ spData.source }}</td>
+                    </tr>
+                </table>
+            </div>
+            {% endif %}
+        </div>
+    </body>
+</html>
+    
